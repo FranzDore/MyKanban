@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+   --main-color: rgb(127, 24, 223);
+   --secondary-color: magenta;
+   --font: "Poppins", sans-serif
+}
+
+body {
+   background: linear-gradient(120deg, #ee7752, #e73c7e, #23a6d5, #14d75c);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+   margin: 0px;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*------------------------------- NAVIGATION BAR--------*/
+
+nav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center ;
+   position: fixed;
+   top: 0; 
+   width: 100%;
+   
+}
+
+nav > .logo > h1 {
+   color: white;
+   text-shadow: 0px 4px rgba(0, 0, 0, 0.5);
+   padding: 1vw;
+}
+
+nav > .logo > h1 > span{
+   color: var(--secondary-color);
+   font-family: var(--font);
+   font-weight: bolder;
+   
+}
+
+nav > ul {
+   list-style-type: none;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+}
+
+nav > ul > li > a {
+   text-decoration: none;
+   color: white;
+   padding: 1vw;
+   font-family: var(--font);
+
+}
+nav > ul > li > a:hover {
+   border-bottom: 2px solid white;
+   padding-bottom: 3px;
+
+}
+
+/*------------------------------- CONTAINER AND BOX-----*/
+
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 90vh;
+}
+
+@media(max-width:350px){
+   .box {
+      width: 150px;
+   }
+
+}
+
+.box {
+   background-color: white;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   padding: 5%;
+   border-radius: 2vw;
+   box-shadow: 0px 7px 7px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+   font-family: var(--font);
+   font-weight: bolder;
+   text-transform: uppercase;
+   text-align: center;
+}
+
+.box > h1 {
+   color: var(--main-color);
+}
+
+.input[type=text] {
+   border: none;
+   border-bottom: 3px solid var(--main-color);
+   background: transparent;
+   text-align: left;
+   margin: 10px;
+   font-family: var(--font);
+   font-size: large;
+}
+
+.input[type=text]:focus {
+   outline: none;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+input[type=submit] {
+   color: #ffffff;
+   background-color: var(--main-color);
+   font-size: 19px;
+   border-radius: 40px;
+   padding: 15px 50px;
+   cursor: pointer;
+   border: 0px;
+}
+
+input[type=submit]:hover {
+   color: #ffffff;
+   background-color: #ff00ff;
+}
+
+#alt {
+   margin-top: 5vh;
+   font-family: var(--font);
+   font-weight: normal;
+}
+
+span > a {
+   text-decoration: none;
+   color: var(--main-color);
+   font-weight: bolder;
+}
+
+span > a:hover {
+   color: var(--secondary-color) ;
+}
+
+
