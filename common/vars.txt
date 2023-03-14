@@ -1,1 +1,10 @@
 vars:
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+/*---------------------------- GENERAL -----------*/
+
+:root {
+   --main-color: rgb(127, 24, 223);
+   --secondary-color: magenta;
+   --font: "Poppins", sans-serif
+}

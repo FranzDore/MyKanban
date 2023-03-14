@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+/*---------------------------- GENERAL -----------*/
 
 :root {
    --main-color: rgb(127, 24, 223);
@@ -25,6 +27,13 @@ body {
 	}
 }
 
+h1 {
+   font-family: var(--font);
+   font-weight: bolder;
+   text-transform: uppercase;
+   text-align: center;
+}
+
 /*------------------------------- NAVIGATION BAR--------*/
 
 nav {
@@ -41,6 +50,7 @@ nav > .logo > h1 {
    color: white;
    text-shadow: 0px 4px rgba(0, 0, 0, 0.5);
    padding: 1vw;
+   margin-left: 20px;
 }
 
 nav > .logo > h1 > span{
@@ -54,7 +64,19 @@ nav > ul {
    list-style-type: none;
    display: flex;
    justify-content: flex-end;
+   flex-wrap: wrap;
    align-items: center;
+   margin-right: 20px;
+}
+
+@media(max-width: 280px){
+   nav > .logo > h1 {
+      margin-left: 0px; 
+   }
+
+   nav > ul {
+      margin-right: 0px;
+   }
 }
 
 nav > ul > li > a {
@@ -70,7 +92,7 @@ nav > ul > li > a:hover {
 
 }
 
-/*------------------------------- CONTAINER AND BOX-----*/
+/*---------------------------- FORM, CONTAINER AND BOX-----*/
 
 .container {
    display: flex;
@@ -79,7 +101,7 @@ nav > ul > li > a:hover {
    height: 90vh;
 }
 
-@media(max-width:350px){
+@media(max-width: 350px){
    .box {
       width: 150px;
    }
@@ -96,11 +118,11 @@ nav > ul > li > a:hover {
    box-shadow: 0px 7px 7px 4px rgba(0, 0, 0, 0.5);
 }
 
-h1 {
-   font-family: var(--font);
-   font-weight: bolder;
-   text-transform: uppercase;
-   text-align: center;
+@media(max-height: 550px){
+   .box{
+      position: fixed;
+      margin-top: 100px;
+   }
 }
 
 .box > h1 {
@@ -130,16 +152,27 @@ form {
 input[type=submit] {
    color: #ffffff;
    background-color: var(--main-color);
+   font-family: var(--font);
+   font-weight: normal;
+   text-transform: uppercase;
    font-size: 19px;
    border-radius: 40px;
    padding: 15px 50px;
    cursor: pointer;
    border: 0px;
+   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+   transition: all 0.3s ease 0s;
 }
 
 input[type=submit]:hover {
    color: #ffffff;
    background-color: #ff00ff;
+   box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.4);
+   transform: translateY(-3px);
+}
+
+#submit {
+   margin-top: 5vh;
 }
 
 #alt {

@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+/*---------------------------- GENERAL -----------*/
+
+:root {
+   --main-color: rgb(127, 24, 223);
+   --secondary-color: magenta;
+   --font: "Poppins", sans-serif;
+}
+
+body {
+   background-color:rgb(29, 28, 32);
+}
+
+* {
+   color: rgb(222, 222, 222);
+   font-family: var(--font);
+}
+
+@keyframes slideInFromLeft {
+   0% {
+     transform: translateX(-100%);
+   }
+   100% {
+     transform: translateX(0);
+   }
+}
+
+@keyframes slideInFromRight {
+   0% {
+     transform: translateX(200%);
+   }
+   100% {
+     transform: translateX(0);
+   }
+}
+
+@keyframes fadeIn {
+   0% {
+     opacity: 0;
+   }
+   100% {
+     opacity: 1;
+   }
+}
+
+#title {
+   text-align: center;
+   font-family: var(--font);
+   animation: slideInFromLeft 2s ease-out;
+}
+
+h1 > span {
+   color: var(--secondary-color);
+}
+
+p {
+   animation: slideInFromRight 2s ease-out;
+}
+
+.container {
+   display: flex;
+   justify-content: center;
+   animation: fadeIn 5s;
+}
+
+.container > h1 > a {
+   text-decoration: none; 
+}
+
+.container > h1 >  a:hover {
+   color: var(--secondary-color);
+   text-decoration: underline;
+}
+
+

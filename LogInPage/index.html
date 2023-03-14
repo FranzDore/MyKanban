@@ -4,11 +4,11 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="icon" href="../common/Logo.jpg" type="image">
    <title>KanBan. Organize your work routine!</title>
    <!--CSS link-->
    <link rel="stylesheet" href="style.css">
-   <!--JS link-->
-   <script src="script.js"></script>
+   
 </head>
 <body>
    <nav>
@@ -18,8 +18,8 @@
          </h1>
       </div>
       <ul>
-         <li><a href="#">About</a></li>
-         <li><a href="#">Contacts</a></li>
+         <li><a href="../AboutPage/index.html">About</a></li>
+         <li><a href="../ContactsPage/index.html">Contacts</a></li>
       </ul>
    </nav>
    <div class="container">
@@ -27,14 +27,17 @@
          <h1>
             Login
          </h1>
-         <form action="">
+         <form action="" id="form">
             <input type="text" placeholder="Username" class="input" spellcheck="false" required>
             <input type="text" placeholder="Password" class="input" spellcheck="false" required>
             <!--TODO:  Submit button here-->
             <input type="submit" id="submit" value="Enter">
          </form>
-         <span id="alt">You're not registered? <a href="#">Click Here</a></span>
+         <span id="alt">You're not registered? <a href="../RegistrationPage/index.html">Click Here</a></span>
       </div>
    </div>
+
+   <!--JS link-->
+   <script src="script.js"></script>
 </body>
 </html>
