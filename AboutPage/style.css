@@ -5,11 +5,13 @@
 :root {
    --main-color: rgb(127, 24, 223);
    --secondary-color: magenta;
+   --background-color: rgb(29, 28, 32);
    --font: "Poppins", sans-serif;
 }
 
 body {
-   background-color:rgb(29, 28, 32);
+   background-color:var(--background-color);
+   overflow-x: hidden;
 }
 
 * {
@@ -61,16 +63,20 @@ p {
 .container {
    display: flex;
    justify-content: center;
-   animation: fadeIn 5s;
+   animation: fadeIn 5s ease-out;
+}
+
+h1 {
+   text-align: center;
 }
 
 .container > h1 > a {
+   color: var(--main-color);
    text-decoration: none; 
 }
 
 .container > h1 >  a:hover {
    color: var(--secondary-color);
-   text-decoration: underline;
 }
 
 

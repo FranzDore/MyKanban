@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+/*---------------------------- GENERAL -----------*/
+
+:root {
+
+   /*--main-color: rgb(127, 24, 223);*/
+   --main-color: white;
+   --secondary-color: magenta;
+   --font: "Poppins", sans-serif
+}
+
+body {
+   background-color: rgb(29, 29, 31);
+}
+
+h1 {
+   font-family: var(--font);
+   font-weight: bolder;
+   text-transform: uppercase;
+   text-align: center;
+}
+
+/*------------------------------- NAVIGATION BAR--------*/
+
+nav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center ;
+   position: fixed;
+   top: 0; 
+   width: 100%;
+   
+}
+
+nav > .logo > h1 {
+   color: white;
+   text-shadow: 0px 4px rgba(0, 0, 0, 0.5);
+   padding: 1vw;
+   margin-left: 20px;
+}
+
+nav > .logo > h1 > span{
+   color: var(--secondary-color);
+   font-family: var(--font);
+   font-weight: bolder;
+   
+}
+
+nav > ul {
+   list-style-type: none;
+   display: flex;
+   justify-content: flex-end;
+   flex-wrap: wrap;
+   align-items: center;
+   margin-right: 20px;
+}
+
+@media(max-width: 280px){
+   nav > .logo > h1 {
+      margin-left: 0px; 
+   }
+
+   nav > ul {
+      margin-right: 0px;
+   }
+}
+
+nav > ul > li > a {
+   text-decoration: none;
+   color: white;
+   padding: 1vw;
+   font-family: var(--font);
+
+}
+nav > ul > li > a:hover {
+   border-bottom: 2px solid white;
+   padding-bottom: 3px;
+
+}
+
+/*---------------------------- FORM, CONTAINER AND BOX-----*/
+
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 90vh;
+}
+
+.box {
+   background-color: rgb(69, 69, 69);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   padding-top: 5%;
+   padding-bottom: 5%;
+   padding-left: 3%;
+   padding-right: 3%;
+   border-radius: 2vw;
+   box-shadow: 0px 7px 7px 4px rgba(255, 255, 255, 0.25);
+}
+
+@media(max-width: 500px){
+   .box{
+      width: 150px;
+   }
+}
+
+.box > h1 {
+   color: var(--main-color);
+}
+
+.input[type=text],
+.input[type=password],
+.input[type=email] {
+   color:white;
+   border: none;
+   border-bottom: 3px solid var(--main-color);
+   background: transparent;
+   text-align: left;
+   margin: 10px;
+   font-family: var(--font);
+   font-size: large;
+}
+
+.input[type=text]:focus,
+.input[type=password]:focus,
+.input[type=email]:focus {
+   outline: none;
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+input[type=submit] {
+   color: #171717;
+   background-color: var(--main-color);
+   font-family: var(--font);
+   font-weight: normal;
+   text-transform: uppercase;
+   font-size: 19px;
+   border-radius: 40px;
+   padding: 15px 50px;
+   cursor: pointer;
+   border: 0px;
+   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+   transition: all 0.3s ease 0s;
+}
+
+input[type=submit]:hover,
+input[type=submit]:focus {
+   color: #ffffff;
+   background-color: #ff00ff;
+   box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.4);
+   transform: translateY(-3px);
+   outline: none;
+}
+
+#submit {
+   margin-top: 5vh;
+}
+
+#alt {
+   margin-top: 5vh;
+   font-family: var(--font);
+   font-weight: normal;
+}
+
+span {
+   color: white;
+}
+
+span > a {
+   text-decoration: none;
+   color: rgb(139, 71, 203);;
+   font-weight: bolder;
+}
+
+span > a:hover {
+   color: var(--secondary-color) ;
+}

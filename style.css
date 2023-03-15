@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+
+/*---------------------------- GENERAL -----------*/
+
+:root {
+   --main-color: rgb(127, 24, 223);
+   --secondary-color: magenta;
+   --background-color: rgb(29, 28, 32);
+   --font: "Poppins", sans-serif;
+}
+/*
+body {
+   background: linear-gradient(90deg, rgb(39, 146, 39), rgb(154, 39, 39), rgb(49, 49, 146), black);
+   background-size: 150% 150%;
+}
+*/
+body {
+   background-color: rgb(29, 28, 32);
+}
+
+* {
+   font-family: var(--font);
+   color: rgb(222, 222, 222)
+}
+
+h1 {
+   text-align: center;
+}
+
+h1 > span {
+   color: var(--secondary-color);
+}
+
+.box {
+   margin-top: 10vh;
+}
+
+.container {
+   display: flex;
+   justify-content: space-around;
+   flex-wrap: wrap;
+}
+
+a {
+   text-decoration: none;
+   margin: 5rem;
+   border: 1px white solid;
+   padding: 1rem 3rem;
+   border-radius: 20px;
+   font-weight: 800;
+}
+
+a:hover {
+   color: black;
+   border: 0px;
+   background-color: rgb(222, 222, 222);
+}

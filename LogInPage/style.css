@@ -113,7 +113,7 @@ nav > ul > li > a:hover {
    display: flex;
    flex-direction: column;
    justify-content: space-around;
-   padding: 5%;
+   padding: 4%;
    border-radius: 2vw;
    box-shadow: 0px 7px 7px 4px rgba(0, 0, 0, 0.5);
 }
@@ -129,7 +129,9 @@ nav > ul > li > a:hover {
    color: var(--main-color);
 }
 
-.input[type=text] {
+.input[type=text],
+.input[type=password],
+.input[type=email] {
    border: none;
    border-bottom: 3px solid var(--main-color);
    background: transparent;
@@ -139,7 +141,9 @@ nav > ul > li > a:hover {
    font-size: large;
 }
 
-.input[type=text]:focus {
+.input[type=text]:focus,
+.input[type=password]:focus,
+.input[type=email]:focus {
    outline: none;
 }
 
@@ -164,11 +168,13 @@ input[type=submit] {
    transition: all 0.3s ease 0s;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover,
+input[type=submit]:focus {
    color: #ffffff;
    background-color: #ff00ff;
    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.4);
    transform: translateY(-3px);
+   outline: none;
 }
 
 #submit {
