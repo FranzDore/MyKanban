@@ -1,0 +1,42 @@
+{
+   "name": "KanBan.",
+   "short_name": "KanBan",
+   "theme_color": "#FF00FF",
+   "background_color": "#1B1B1B",
+   "display": "standalone",
+   "scope": "/",
+   "start_url": "/",
+   "icons": [
+      {
+         "src": "common/Logo_dark_inverted192.png",
+         "sizes": "192x192",
+         "type": "image/png"
+      },
+      {
+         "src": "common/Logo192.png",
+         "sizes": "192x192",
+         "type": "image/png"
+      },
+      {
+         "src": "common/Logo144.png",
+         "sizes": "144x144",
+         "type": "image/png"
+      },
+      {
+         "src": "common/Logo_dark_inverted144.png",
+         "sizes": "144x144",
+         "type": "image/png"
+      },
+      {
+         "src": "common/Logo_dark_inverted512.png",
+         "sizes": "512x512",
+         "type": "image/png"
+      },
+      {
+         "src": "common/Logo512.png",
+         "sizes": "512x512",
+         "type": "image/png",
+         "purpose": "any maskable"
+      }
+   ]
+}
