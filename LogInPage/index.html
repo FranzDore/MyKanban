@@ -4,7 +4,8 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" href="../common/Logo.jpg" type="image">
+   <meta name="theme-color" content="#FF00FF">
+   <link rel="icon" href="../common/Logo192.png" type="image/png">
    <title>KanBan. Organize your work routine!</title>
    <!--CSS link-->
    <link rel="stylesheet" href="style.css">
@@ -28,16 +29,17 @@
             Login
          </h1>
          <form action="" id="form">
-            <input type="email" placeholder="Email" class="input" spellcheck="false" name="email" required>
-            <input type="password" placeholder="Password" class="input" spellcheck="false" name="password" required>
-            <!--TODO:  Submit button here-->
+            <input type="email" placeholder="Email" class="input" spellcheck="false" name="email" required id="emailInput">
+            <input type="password" placeholder="Password" class="input" spellcheck="false" name="password" required id="pwInput">
             <input type="submit" id="submit" value="Enter">
          </form>
+         <span>Forgot your password? <a href="../PWRecoveryPage/index.html" target="_blank" rel="noopener noreferrer">Click here</a> to reset it.</span>
          <span id="alt">You're not registered? <a href="../RegistrationPage/index.html">Click Here</a></span>
       </div>
    </div>
 
    <!--JS link-->
-   <script src="script.js"></script>
+   
+   <script type="module" src="./script.js"></script>
 </body>
 </html>

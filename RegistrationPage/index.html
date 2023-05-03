@@ -4,7 +4,8 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" href="../common/Logo_dark_inverted.jpg" type="image">
+   <meta name="theme-color" content="#FF00FF">
+   <link rel="icon" href="../common/Logo_dark_inverted192.png" type="image/png">
    <title>KanBan. Organize your work routine!</title>
    <!--CSS link-->
    <link rel="stylesheet" href="style.css">
@@ -28,9 +29,8 @@
             Sign Up
          </h1>
          <form action="" id="form">
-            <input type="email" placeholder="Email" class="input" spellcheck="false" name="email" required>
-            <input type="password" placeholder="Password" class="input" spellcheck="false" name="password" required>
-            <!--TODO:  Submit button here-->
+            <input type="email" placeholder="Email" class="input" spellcheck="false" name="email" required id="emailInput">
+            <input type="password" placeholder="Password" class="input" spellcheck="false" name="password" required id="pwInput">
             <input type="submit" id="submit" value="Enter">
          </form>
          <span id="alt">Already have an account? <a href="../LogInPage/index.html">Click Here</a> to login!</span>
@@ -38,6 +38,7 @@
    </div>
 
    <!--JS link-->
-   <script src="script.js"></script>
+   
+   <script type="module" src="./script.js"></script>
 </body>
 </html>

@@ -1,13 +1,13 @@
-const CACHE_NAME = "KanBan-static-v3";
+const CACHE_NAME = "KanBan-static-v10";
 const DYNAMIC_CACHE_NAME = "KanBan-dynamic-v2"
 const STATIC_CACHE_URLS = [
    "/",
+   "/FallbackPage/index.html",
+   "/FallbackPage/style2.css",
    "/index.html",
    "/firebaseConfig.js",
    "/style.css",
-   "/common/Logo_dark_inverted192.png",
-   "/FallbackPage/index.html",
-   "/FallbackPage/style.css"
+   "/common/Logo_dark_inverted192.png"
 ];
 
 //Install event
@@ -48,3 +48,5 @@ self.addEventListener("fetch", event => {
       }).catch(() => caches.match("/FallbackPage/index.html"))
    );
 });
+
+

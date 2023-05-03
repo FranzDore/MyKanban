@@ -181,8 +181,9 @@ input[type=submit]:focus {
    margin-top: 5vh;
 }
 
-#alt {
-   margin-top: 5vh;
+span {
+   text-align: center;
+   margin-top: 2vh;
    font-family: var(--font);
    font-weight: normal;
 }

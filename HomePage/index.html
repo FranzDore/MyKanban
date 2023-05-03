@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="theme-color" content="#FF00FF">
+   <title>KanBan. Organizza la tua routine di lavoro! - Home Page</title>
+   <link rel="icon" href="../common/Logo192.png" type="image/png">
+   <link rel="stylesheet" href="style.css">
+   <!-- Icona Hamburger Menu -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+   <div id="base">
+      <!-- Top Navigation Menu -->
+      <div class="topnav">
+         <h1>KANBAN<span>.</span></h1>
+         <!-- Navigation links (hidden by default) -->
+         <div id="myLinks">
+         <a href="#" id="logout">Logout</a>
+         <a href="#" id="addList">Add New List +</a>
+         </div>
+         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+         <a href="javascript:void(0);" class="icon" id="menu">
+         <i class="fa fa-bars"></i>
+         </a>
+      </div>
+
+      <!-- Popups hidden by default -->
+      <div id="containerList" style="display: none">
+         <div id="popup" style="display:block">
+            <form action="" autocomplete="off">
+               <button>X</button>
+               <h3>Insert List Name</h3>
+               <input type="text" name="name" id="listName" maxlength="40" required>
+               <input type="submit" name="submit" value="Crea" id="submitList">
+            </form>
+         </div>
+      </div>
+      <div id="containerItem" style="display: none">
+         <div id="popupItem" style="display:block">
+            <form action="" autocomplete="off">
+               <button>X</button>
+               <h3>Insert Item Text</h3>
+               <input type="text" name="name" id="itemText" required>
+               <input type="submit" name="submit" value="Crea" id="submitItem">
+            </form>
+         </div>
+      </div>
+
+   <!--Content Will be Shown Here-->
+   <div id="board">
+           
+   </div>
+   </div>
+   
+   <script type="module" src="./script.js"></script>
+</body>
+</html>
