@@ -101,9 +101,9 @@ nav > ul > li > a:hover {
    height: 90vh;
 }
 
-@media(max-width: 350px){
+@media(max-width: 410px){
    .box {
-      width: 150px;
+      width: 180px;
    }
 
 }

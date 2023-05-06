@@ -1,9 +1,7 @@
-const CACHE_NAME = "KanBan-static-v10";
-const DYNAMIC_CACHE_NAME = "KanBan-dynamic-v2"
+const CACHE_NAME = "KanBan-static-v12";
+const DYNAMIC_CACHE_NAME = "KanBan-dynamic-v4"
 const STATIC_CACHE_URLS = [
    "/",
-   "/FallbackPage/index.html",
-   "/FallbackPage/style2.css",
    "/index.html",
    "/firebaseConfig.js",
    "/style.css",

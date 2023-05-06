@@ -87,9 +87,11 @@ onSnapshot(doc(db, "utenti", localStorage.getItem("user")), (doc) => {
 })
 
 //Functions to dynamically create items and lists. They're used in the event listeners.
-function createItem(testo = "Temp"){
+function createItem(testo){
    const item = document.createElement("div");
    const p = document.createElement("p");
+   if(testo === "")
+      return undefined;
    p.innerHTML = testo; //Is "temp" by default
    const del = document.createElement("button");
    del.innerHTML = "X";
@@ -232,7 +234,11 @@ submitItem.addEventListener("click", (event) => {
          return;
       }
    }
-   const newItem = createItem(text);
+   const newItem = createItem(text); //could be undefined
+   if(newItem === undefined){
+      alert("Cannot create an empty item. Please, give a valid item text.");
+      return;
+   }
    const body = clickedListButton.querySelectorAll(".list-items");
    body[0].appendChild(newItem);
    const temp = document.getElementById("containerItem");
