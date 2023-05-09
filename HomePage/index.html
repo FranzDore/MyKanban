@@ -10,6 +10,7 @@
    <link rel="stylesheet" href="style.css">
    <!-- Icona Hamburger Menu -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="manifest" type="application/manifest+json" href="../Manifest.webmanifest">
 </head>
 
 <body>
@@ -34,17 +35,29 @@
             <form action="" autocomplete="off">
                <button>X</button>
                <h3>Insert List Name</h3>
-               <input type="text" name="name" id="listName" maxlength="40" required>
+               <input type="text" name="name" id="listName" maxlength="40">
                <input type="submit" name="submit" value="Crea" id="submitList">
             </form>
          </div>
       </div>
+
+      <div id="containerEdit" style="display: none">
+         <div id="editPopup" style="display:block">
+            <form action="" autocomplete="off">
+               <button>X</button>
+               <h3>Insert new Text</h3>
+               <input type="text" name="name" id="editName">
+               <input type="submit" name="submit" value="Crea" id="submitEdit">
+            </form>
+         </div>
+      </div>
+
       <div id="containerItem" style="display: none">
          <div id="popupItem" style="display:block">
             <form action="" autocomplete="off">
                <button>X</button>
                <h3>Insert Item Text</h3>
-               <input type="text" name="name" id="itemText" required>
+               <input type="text" name="name" id="itemText">
                <input type="submit" name="submit" value="Crea" id="submitItem">
             </form>
          </div>

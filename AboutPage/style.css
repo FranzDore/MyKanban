@@ -58,6 +58,13 @@ h1 > span {
 
 p {
    animation: slideInFromRight 2s ease-out;
+   margin-left: 50px;
+   margin-right: 50px;
+}
+
+h3 {
+   text-align: center;
+   animation: slideInFromRight 2s ease-out;
 }
 
 .container {

@@ -1,5 +1,5 @@
-const CACHE_NAME = "KanBan-static-v12";
-const DYNAMIC_CACHE_NAME = "KanBan-dynamic-v4"
+const CACHE_NAME = "KanBan-static-v1";
+const DYNAMIC_CACHE_NAME = "KanBan-dynamic-v1"
 const STATIC_CACHE_URLS = [
    "/",
    "/index.html",
@@ -43,7 +43,7 @@ self.addEventListener("fetch", event => {
                return fetchResponse;
             })
          }); 
-      }).catch(() => caches.match("/FallbackPage/index.html"))
+      })//.catch("./FallbackPage/inndex.html") ---> PWA works offline as long as the user visits all page while online. No need for a FallbackPage, assets are being cached in dynamic cache.
    );
 });
 

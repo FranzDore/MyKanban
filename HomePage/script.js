@@ -41,6 +41,52 @@ logout.addEventListener('click', (e) => {
    });
 });
 
+
+//MUTATION OBSERVER ---> Necessary to remove item from front end when page is offline. We add event listener to all items after we've noticed a change in the dom. <OPTIMISTIC UI>
+// Options for the observer (which mutations to observe)
+const config = { attributes: true, childList: true, subtree: true };
+
+// Callback function to execute when mutations are observed
+const callback = (mutationList) => {
+  for (const mutation of mutationList) {
+    if (mutation.type === "childList") {
+      let allItemDelButtons = document.querySelectorAll(".item-del");
+
+      for(let x of allItemDelButtons){
+         x.addEventListener("click", (event) => {
+            if(event.target.parentNode.parentNode !== null){
+               event.preventDefault();
+               const p = event.target.parentNode.parentNode.previousElementSibling.querySelector("p");
+               const nomeLista = p.innerHTML;
+               const text = event.target.parentNode.firstElementChild.innerHTML;
+               const itemList = event.target.parentNode.parentNode.querySelectorAll(".item");
+               const itemListAsArray = [...itemList]; //itemList is not iterable
+               const result = itemListAsArray.filter((item) => {
+                     if(item.firstElementChild.innerHTML !== text) return true
+                     else  return false;
+               }).map((item) => {
+                  return item.firstElementChild.innerHTML;
+               })
+               event.target.parentNode.remove();
+               const obj = {  };
+               obj[nomeLista] = result;
+               updateDoc(docRef, obj)
+               .catch((e) => alert(e.message))
+            }
+         })
+      }
+    }
+  }
+};
+
+// Create an observer instance linked to the callback function
+const observer = new MutationObserver(callback);
+
+// Start observing the target node for configured mutations
+const board = document.getElementById("board");
+observer.observe(board, config);
+
+
 //Whenever there's an update, we add an event listener to all deletion buttons. This is required because we can't target the list (or 
 //the board) when we're creating an item (or a list), since it is not yet appended. We add an event listener after we've created and 
 //appendend the item (or the list)
@@ -63,10 +109,10 @@ onSnapshot(doc(db, "utenti", localStorage.getItem("user")), (doc) => {
             }).map((item) => {
                return item.firstElementChild.innerHTML;
             })
+            event.target.parentNode.remove();
             const obj = {  };
             obj[nomeLista] = result;
             updateDoc(docRef, obj)
-            .then(() => event.target.parentNode.remove())
             .catch((e) => alert(e.message))
          }
       })
@@ -90,7 +136,7 @@ onSnapshot(doc(db, "utenti", localStorage.getItem("user")), (doc) => {
 function createItem(testo){
    const item = document.createElement("div");
    const p = document.createElement("p");
-   if(testo === "")
+   if(testo.trim() === "")
       return undefined;
    p.innerHTML = testo; //Is "temp" by default
    const del = document.createElement("button");
@@ -99,13 +145,25 @@ function createItem(testo){
    item.appendChild(p);
    item.appendChild(del);
    item.classList.add("item");
+   item.addEventListener("dblclick", (event) => {
+      event.preventDefault();
+      let popup = document.getElementById("containerEdit");
+      if(popup.style.display === "none")
+         popup.style.display = "block";
+      else
+         popup.style.display = "none";
+      clickedEditItem = event.target;
+      console.log(clickedEditItem);
+      clickedItemList = event.target.parentNode.parentNode;
+      console.log(clickedItemList);
+   })
    return item;
 }
 
 function createList(testo) {
    //Check if there's a list named the same
    const allListHeads = document.querySelectorAll(".list-head");
-   if(!testo)  return undefined;
+   if(!(testo).trim())  return undefined;
    for(let lista of allListHeads) {
       const p = lista.querySelector("p");
       if(p.innerHTML === testo){
@@ -254,18 +312,66 @@ submitItem.addEventListener("click", (event) => {
    updateDoc(userRef, obj);
 });
 
+//TEXT EDIT RELATED
+
+const hideEditPopup = document.querySelector("#editPopup").firstElementChild.firstElementChild;
+const formEdit = document.querySelector("#editPopup").firstElementChild;
+
+hideEditPopup.addEventListener("click", (event) =>{
+   event.preventDefault();
+   const temp = document.querySelector("#containerEdit");
+   temp.style.display = "none";
+});
+
+//variable used for knowing what item was selected (edit) and its text content.
+let clickedEditItem;
+//variable used to check if list of double-clicked item has an equal item inside of it.
+let clickedItemList;
+
+formEdit.addEventListener("submit", (event) => {
+   event.preventDefault();
+   const oldText = clickedEditItem.firstElementChild.innerHTML;
+   const text = document.getElementById("editName").value;
+   document.getElementById("editName").value = "";
+   //Check if ither items in list have the same text value
+   for(let item of clickedItemList.querySelector(".list-items").childNodes){
+      if(item.firstElementChild.innerHTML === text){
+            alert("Can't make two equal items. Please Retry.");
+            return;
+         }
+      }
+   //No clones. We can assign text
+   clickedEditItem.firstElementChild.innerHTML = text;
+   
+   const editPopup = document.querySelector("#containerEdit");
+   editPopup.style.display = "none";
+   //Update firestore
+   const userRef = doc(db, "utenti", localStorage.getItem("user"));
+   const listaDegliItem = [...clickedItemList.querySelector(".list-items").childNodes];
+   const validArray = listaDegliItem.map((x) => x.firstElementChild.innerHTML)
+   const obj = { };
+   const temp2 = clickedItemList.firstElementChild.querySelector("p");
+   const temp2Name = temp2.innerHTML;
+   obj[temp2Name] = validArray;
+   updateDoc(userRef, obj);
+})
+
+
 const tips = [
-   "You can use Shift to scroll the KanBan horizzontally!",
+   "You can use Shift to scroll the KanBan horizontally!",
    "Don't forget to update the KanBan whenever you end or start a new task!",
-   "Don't work on too many things at once! Context switch is bad!"
+   "Don't work on too many things at once! Context switch is bad!",
+   "You can double click on an item to modify its content!"
 ]
+
+//TODO: Notifiche Firefox, Safari
 
 const isGranted = localStorage.getItem("notificationPermission")
 if(isGranted === "true"){
    navigator.serviceWorker.ready.then((registration) => {
       const obj = {
          icon: "../common/Logo512.png",
-         body: tips[Math.floor(Math.random() * 3)]
+         body: tips[Math.floor(Math.random() * tips.length)]
       };
       registration.showNotification("KanBan.", obj);
    });
