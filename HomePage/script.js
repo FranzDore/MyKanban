@@ -2,12 +2,24 @@ import { app } from "../firebaseConfig.js"
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js"
 import { getFirestore, doc, getDoc, updateDoc, deleteField, onSnapshot, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-firestore.js"
 
+//Shortcut to elements
+const menu = document.getElementById("menu")
+const addList = document.getElementById("addList");
+const submitList = document.getElementById("submitList");
+const formLista = document.querySelector("#popup").firstElementChild;
+const hidePopup = document.querySelector("#popup").firstElementChild.firstElementChild;
+const submitItem = document.getElementById("submitItem");
+const formItem = document.querySelector("#popupItem").firstElementChild;
+const hidePopupItem = document.querySelector("#popupItem").firstElementChild.firstElementChild;
+
+//Auth Firebase
 const auth = getAuth(app);
 const logout = document.querySelector("#logout");
 
-//Database
+//Firestore Database
 const db = getFirestore();
 
+//Enable persistance. Data is seen offline even after reload.
 enableIndexedDbPersistence(db)
 .catch(err => {
    console.log(err.message);
@@ -16,11 +28,9 @@ enableIndexedDbPersistence(db)
 const docRef = doc(db, "utenti", localStorage.getItem("user"));
 const docSnap = await getDoc(docRef);
 
-
-
+//Populate the board with data from firestore.
 const dati = docSnap.data();
 
-//Populate the board with data from firestore.
 Object.keys(dati).forEach((x) => {
    let temp = createList(x);
    const board = document.getElementById("board");
@@ -33,7 +43,7 @@ Object.keys(dati).forEach((x) => {
 })
 
    
-//Logout listener
+//Logout button listener
 logout.addEventListener('click', (e) => {
    e.preventDefault();
    signOut(auth).then(() => {
@@ -42,7 +52,7 @@ logout.addEventListener('click', (e) => {
 });
 
 
-//MUTATION OBSERVER ---> Necessary to remove item from front end when page is offline. We add event listener to all items after we've noticed a change in the dom. <OPTIMISTIC UI>
+//MUTATION OBSERVER ---> Necessary to remove items from front end when page is offline. We add event listener to all items after we've noticed a change in the dom. <OPTIMISTIC UI>
 // Options for the observer (which mutations to observe)
 const config = { attributes: true, childList: true, subtree: true };
 
@@ -87,9 +97,7 @@ const board = document.getElementById("board");
 observer.observe(board, config);
 
 
-//Whenever there's an update, we add an event listener to all deletion buttons. This is required because we can't target the list (or 
-//the board) when we're creating an item (or a list), since it is not yet appended. We add an event listener after we've created and 
-//appendend the item (or the list)
+//Whenever there's an update in firestore, we add an event listener to all deletion buttons. This is required because we can't target the list (or the board) when we're creating an item (or a list), since it is not yet appended. We add an event listener after we've created and appendend the item (or the list).
 onSnapshot(doc(db, "utenti", localStorage.getItem("user")), (doc) => {
    let allListDelButtons = document.querySelectorAll(".list-del");
    let allItemDelButtons = document.querySelectorAll(".item-del");
@@ -133,12 +141,13 @@ onSnapshot(doc(db, "utenti", localStorage.getItem("user")), (doc) => {
 })
 
 //Functions to dynamically create items and lists. They're used in the event listeners.
+//Fucntion declaration is hoisted to the top of the script.
 function createItem(testo){
    const item = document.createElement("div");
    const p = document.createElement("p");
    if(testo.trim() === "")
       return undefined;
-   p.innerHTML = testo; //Is "temp" by default
+   p.innerHTML = testo;
    const del = document.createElement("button");
    del.innerHTML = "X";
    del.classList.add("item-del");
@@ -153,9 +162,7 @@ function createItem(testo){
       else
          popup.style.display = "none";
       clickedEditItem = event.target;
-      console.log(clickedEditItem);
       clickedItemList = event.target.parentNode.parentNode;
-      console.log(clickedItemList);
    })
    return item;
 }
@@ -201,17 +208,9 @@ function createList(testo) {
    return list;
 }
 
-//Shortcut to elements
-const menu = document.getElementById("menu")
-const addList = document.getElementById("addList");
-const submitList = document.getElementById("submitList");
-const formLista = document.querySelector("#popup").firstElementChild;
-const hidePopup = document.querySelector("#popup").firstElementChild.firstElementChild;
-const submitItem = document.getElementById("submitItem");
-const formItem = document.querySelector("#popupItem").firstElementChild;
-const hidePopupItem = document.querySelector("#popupItem").firstElementChild.firstElementChild;
+//EVENT RELATED
 
-//Variable used to recognize what list "+" has shown the popup.
+//Variable used to recognize what list "+" button has shown the popup.
 let clickedListButton;
 
 //We add the event listeners for the functionalities of the page
@@ -285,7 +284,7 @@ submitItem.addEventListener("click", (event) => {
    event.preventDefault();
    const text = document.querySelector("#itemText").value;
    document.querySelector("#itemText").value = "";
-   //check if text exists already
+   //check if text exists already in a different item
    for(let item of clickedListButton.querySelector(".list-items").childNodes){
    if(item.firstElementChild.innerHTML === text){
          alert("Cannot create two equal items. Retry.");
@@ -325,13 +324,16 @@ hideEditPopup.addEventListener("click", (event) =>{
 
 //variable used for knowing what item was selected (edit) and its text content.
 let clickedEditItem;
-//variable used to check if list of double-clicked item has an equal item inside of it.
+//variable used to check if list of double-clicked item has an equal item inside of it (No doubled items are allowed).
 let clickedItemList;
 
 formEdit.addEventListener("submit", (event) => {
    event.preventDefault();
-   const oldText = clickedEditItem.firstElementChild.innerHTML;
    const text = document.getElementById("editName").value;
+   if(text.trim() == ""){
+      alert("Can't create an empty item. Please Retry.");
+      return;
+   }
    document.getElementById("editName").value = "";
    //Check if ither items in list have the same text value
    for(let item of clickedItemList.querySelector(".list-items").childNodes){
