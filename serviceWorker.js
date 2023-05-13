@@ -5,7 +5,8 @@ const STATIC_CACHE_URLS = [
    "/index.html",
    "/firebaseConfig.js",
    "/style.css",
-   "/common/Logo_dark_inverted192.png"
+   "/common/Logo_dark_inverted192.png",
+   "/404.html"
 ];
 
 //Install event
